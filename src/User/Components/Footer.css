@@ -1,0 +1,28 @@
+.footer {
+    background-color: #041e47; /* Custom background */
+    color: #b8dbc7;
+  }
+  
+  .footer a {
+    color: #b8dbc7;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+  
+  .social-icons a {
+    font-size: 1.5rem;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .footer .col-md-4 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  }
+  
+  

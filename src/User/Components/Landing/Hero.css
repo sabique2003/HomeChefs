@@ -1,0 +1,32 @@
+.hero {
+  height: 100vh;
+  background-image: url('../../../Images/landing-bg.jpg'); /* Path to your local image */
+  background-size: cover;
+  background-position: top;
+}
+/* Hero.css */
+
+.hero .btn-custom {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero .btn-custom {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero .btn-custom {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    width: 100%; /* Make buttons full-width on very small screens */
+  }
+  .hero .btn-chef {
+    width: 100%;
+    margin-top: 10px; /* Add space between buttons */
+  }
+}

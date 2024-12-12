@@ -1,0 +1,12 @@
+.p-view{
+    background-color: #05452d;
+}
+@media (max-width: 750px) {
+    .img-show {
+        margin-top: 20px;
+    }
+    .view-card{
+        padding: 10px;
+    }
+  }
+

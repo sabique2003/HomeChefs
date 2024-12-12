@@ -1,0 +1,34 @@
+.home-hero{
+    background-image: url('../../../Images/HomeHero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    position: relative;
+}
+
+/* Custom responsive adjustments */
+.home-hero h1 {
+    font-size: calc(1.5rem + 1vw); /* Scales with screen size */
+  }
+  
+  .home-hero .search-bar {
+    font-size: 1rem; /* Ensure readable size on small devices */
+    padding: 0.75rem 1.25rem; /* Adjust padding for better responsiveness */
+  }
+  
+  .home-hero .btn-outline-secondary {
+    background-color: #ffc107; /* Keep warning color consistent */
+    border-color: #ffc107;
+  }
+
+  /* Media query for screens smaller than 320px */
+  @media (max-width: 320px) {
+    .home-hero {
+      height: 50vh; /* Increased padding for smaller screens */
+    }
+  }
+  .home-canvas-wrapper {
+    position: absolute;
+    top: 20px; /* Adjust the top distance as needed */
+    right: 20px; /* Adjust the right distance as needed */
+  }

@@ -1,0 +1,20 @@
+
+  .spacing-reducer {
+    margin-top: -20px; /* Adjust to control spacing between components */
+  }
+  
+  @media (max-width: 768px) {
+    .spacing-reducer {
+      margin-top: -10px; /* Less negative margin for smaller screens */
+    }
+  }
+  
+  .popular-chefs .card {
+    margin-bottom: 20px; /* Space between cards */
+    border-radius: 10px;
+  }
+  
+  .how-it-works, .popular-chefs {
+    padding: 20px; /* Control padding inside each section */
+  }
+  
