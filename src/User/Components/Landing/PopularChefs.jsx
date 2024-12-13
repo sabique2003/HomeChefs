@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import chef from '../../../Images/chef.jpg'; // Fallback image if the API doesn't return one
-import { getChefsApi } from '../../../Services/allApis'; // Assuming this API fetches chefs data.
+import { getChefsApi } from '../../../Services/allApis'; 
+import chefImg from '../../../Images/chef.jpg'
 
 const PopularChefs = () => {
-  const [chefs, setChefs] = useState([]); // State to store the chefs' data
-  const [error, setError] = useState(null); // State to store any error messages
+  const [chefs, setChefs] = useState([]); 
+  const [error, setError] = useState(null); 
 
-  // Function to fetch chefs data
   const fetchChefs = async () => {
-    
     try {
-      const response = await getChefsApi(); // Call the API
-      setChefs(response.data.slice(0, 3)); // Limit the results to the first 3 chefs
+      const response = await getChefsApi(); 
+
+      if (Array.isArray(response.data)) {
+        setChefs(response.data.slice(0, 3)); 
+      } else {
+        throw new Error('Unexpected data format');
+      }
     } catch (err) {
       setError('Failed to fetch chefs. Please try again later.');
+      console.error('Error fetching chefs:', err);
     }
   };
 
-  // UseEffect to call fetchChefs when the component loads
   useEffect(() => {
     fetchChefs();
   }, []);
@@ -29,13 +32,18 @@ const PopularChefs = () => {
         <div className="row">
           {error && <div className="alert alert-danger">{error}</div>}
           {chefs.length > 0 ? (
-            chefs.map((chef, index) => (
-              <div className="col-md-4" key={index}>
+            chefs.map((chef) => (
+              <div className="col-md-4" key={chef._id}>
                 <div className="card border shadow" style={{ backgroundColor: '#DFF2EB' }}>
-                  <img src={chef.image || chef} className="card-img-top" alt={chef.name} />
+                  {/* Use a fallback image if the image property is missing */}
+                  <img 
+                    src={chef.image || chefImg } 
+                    className="card-img-top" 
+                    alt={chef.chefname || 'Chef'} 
+                  />
                   <div className="card-body">
-                    <h5 className="card-title">{chef.name}</h5>
-                    <p className="card-text">{chef.specialty}</p>
+                    <h5 className="card-title">{chef.chefname || 'Unknown Chef'}</h5>
+                    <p className="card-text">WhatsApp: {chef.whatsapp || 'N/A'}</p>
                   </div>
                 </div>
               </div>

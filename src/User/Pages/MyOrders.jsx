@@ -11,7 +11,6 @@ function MyOrders() {
     const [rating, setRating] = useState({});
     const { StatusResponse } = useContext(StatusResponseContext);
 
-    // Fetch orders when `StatusResponse` updates
     useEffect(() => {
         fetchOrders();
     }, [StatusResponse]);
@@ -21,7 +20,7 @@ function MyOrders() {
     }, [StatusResponse]);
 
     const fetchOrders = async () => {
-        setLoading(true); // Show loading spinner
+        setLoading(true); 
         const headers = {
             'Content-Type': 'application/json',
             Authorization: `Token ${sessionStorage.getItem('token')}`,
@@ -30,7 +29,6 @@ function MyOrders() {
         try {
             const res = await getUserOrderApi(headers);
             if (res.status === 200) {
-                // Append addresses to orders
                 const ordersWithAddress = await Promise.all(
                     res.data.map(async (order) => ({
                         ...order,
@@ -38,7 +36,6 @@ function MyOrders() {
                     }))
                 );
 
-                // Filter out cancelled orders
                 setOrders(ordersWithAddress.filter((order) => !order.cancelled));
             } else {
                 toast.error('Failed to fetch orders.');
@@ -48,7 +45,7 @@ function MyOrders() {
             console.error('Error fetching orders:', error);
             toast.error('An error occurred while fetching orders.');
         } finally {
-            setLoading(false); // Hide loading spinner
+            setLoading(false); 
         }
     };
 

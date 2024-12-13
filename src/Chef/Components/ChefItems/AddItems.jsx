@@ -26,10 +26,10 @@ function AddItems() {
         if (!image || !itemname || !price || !ingredients || !time || !delivery || !description || !category) {
             toast.error("Enter Valid Input !!");
         } else {
-            const chefname = sessionStorage.getItem('name'); // Retrieve chef name from sessionStorage
-            const chefimage = sessionStorage.getItem('profile'); // Retrieve chef image URL from sessionStorage
-            const location = sessionStorage.getItem('location'); // Retrieve chef image URL from sessionStorage
-            const whatsapp = sessionStorage.getItem('whatsapp'); // Retrieve chef image URL from sessionStorage
+            const chefname = sessionStorage.getItem('name'); 
+            const chefimage = sessionStorage.getItem('profile'); 
+            const location = sessionStorage.getItem('location'); 
+            const whatsapp = sessionStorage.getItem('whatsapp'); 
     
             if (!chefname || !location || !whatsapp) {
                 toast.error("Chef details are missing in session storage!");
@@ -45,8 +45,8 @@ function AddItems() {
             fd.append('delivery', delivery);
             fd.append('description', description);
             fd.append('category', category);
-            fd.append('chefname', chefname); // Add chef name to form data
-            fd.append('chefimage', chefimage); // Add chef image URL to form data
+            fd.append('chefname', chefname); 
+            fd.append('chefimage', chefimage); 
             fd.append('whatsapp',whatsapp);
             fd.append('location',location);
     
@@ -60,7 +60,7 @@ function AddItems() {
                 console.log(res);
                 if (res.status === 200) {
                     toast.success("Item Added");
-                    setGetResponse(prevItems => [res.data, ...prevItems]); // Add the new item to the context
+                    setGetResponse(prevItems => [res.data, ...prevItems]);
                     handleClose();
                 } else {
                     toast.error("Item Adding Failed");

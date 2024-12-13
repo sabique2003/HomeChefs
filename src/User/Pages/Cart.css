@@ -1,0 +1,59 @@
+@media (max-width: 768px) {
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .cart-image img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .cart-title,
+    .cart-price,
+    .cart-quantity,
+    .cart-subtotal,
+    .cart-actions {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+    }
+  
+    .quantity-input {
+      width: 50px;
+      font-size: 0.8rem;
+    }
+  
+    .btn-delete {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+    }
+  
+    .text-end h5 {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .cart-title,
+    .cart-price,
+    .cart-quantity,
+    .cart-subtotal,
+    .cart-actions {
+      font-size: 0.7rem;
+      padding: 0.25rem;
+    }
+  
+    .quantity-input {
+      width: 40px;
+      font-size: 0.7rem;
+    }
+  
+    .btn-delete {
+      padding: 0.2rem 0.4rem;
+      font-size: 0.7rem;
+    }
+  
+    .text-end h5 {
+      font-size: 0.9rem;
+    }
+  }
+  

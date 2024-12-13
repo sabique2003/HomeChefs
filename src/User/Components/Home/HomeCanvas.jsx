@@ -4,10 +4,12 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 import { tokenContext } from '../../../Contextapi/TokenContext';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function HomeCanvas({ name, ...props }) {
     const [show, setShow] = useState(false);
     const {tokenStatus,setTokenStatus}=useContext(tokenContext)
+    const nav=useNavigate()
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

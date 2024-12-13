@@ -52,20 +52,17 @@ function Header() {
       }
     };
 
-    // Custom function to override sessionStorage.setItem
     const originalSetItem = sessionStorage.setItem;
     sessionStorage.setItem = function (key, value) {
-      originalSetItem.apply(this, arguments); // Call the original method
+      originalSetItem.apply(this, arguments); 
       if (key === 'location') {
-        loadAddress(); // Trigger address update
+        loadAddress(); 
       }
     };
 
-    // Initial load of address
     loadAddress();
 
     return () => {
-      // Cleanup: Restore the original sessionStorage.setItem
       sessionStorage.setItem = originalSetItem;
       window.removeEventListener('scroll', handleScroll);
     };

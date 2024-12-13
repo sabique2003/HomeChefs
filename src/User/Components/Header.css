@@ -1,24 +1,24 @@
 .bg {
-    background-color: #4A628A; /* Initial background color */
+    background-color: #4A628A; 
     color: #0c3a3e;
     transition: background-color 0.3s ease;
-    max-height: 70px; /* Limits header height */
+    max-height: 70px; 
 
 }
 
-/* Shrinked navbar styles */
+
 .navbar-shrink {
-    background-color: #16423C ;/* Shrunken navbar color */
+    background-color: #16423C ;
     padding: 0.5rem 1rem;
 }
 
 .navbar-brand img {
-  height: 55px; /* Sets logo height independently */
-  width: auto;  /* Keeps logo's aspect ratio */
+  height: 55px; 
+  width: auto; 
 }
 
 .home-chef{
-    display: inline-block; /* Allows padding to work */
+    display: inline-block; 
     padding-top: 13px;
 }
 

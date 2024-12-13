@@ -48,7 +48,6 @@ const CheckOut = () => {
       const response = await deleteOrderApi(id, headers);
       if (response.status === 200) {
         setCartItems(cartItems.filter((item) => item._id !== id));
-        toast.success("Item removed successfully.");
       } else {
         throw new Error("Failed to delete the order.");
       }

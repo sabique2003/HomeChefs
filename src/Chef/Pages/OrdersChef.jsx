@@ -50,14 +50,14 @@ function OrdersChef() {
       if (latLngMatch) {
         const lat = latLngMatch[1];
         const lng = latLngMatch[2];
-        const controller = new AbortController(); // Abort signal for timeout
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); 
   
         const response = await fetch(
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`,
           { signal: controller.signal }
         );
-        clearTimeout(timeoutId); // Clear timeout if fetch succeeds
+        clearTimeout(timeoutId); 
   
         if (!response.ok) {
           console.error(`Nominatim error: ${response.status}`);

@@ -13,8 +13,8 @@ function ItemView() {
     const [address, setAddress] = useState('Loading location...');
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to top
-        fetchItem(); // Fetch item details
+        window.scrollTo(0, 0); 
+        fetchItem(); 
     }, [id]);
 
     const fetchItem = async () => {
@@ -27,7 +27,6 @@ function ItemView() {
             console.log('Fetched Item:', res.data);
             setItem(res.data);
 
-            // Fetch address from latitude and longitude
             if (res.data.location) {
                 const fetchedAddress = await fetchAddress(res.data.location);
                 setAddress(fetchedAddress);
@@ -82,17 +81,15 @@ function ItemView() {
             return;
         }
     
-        // Log the item for debugging
         console.log('Item Data:', item);
     
-        // Prepare the cart item
         const cartItem = {
-            itemId: id, // Include the itemId (passed as a parameter from the route)
+            itemId: id, 
             itemimage: item.image,
             itemname: item.itemname,
             price: item.price,
             delivery: item.delivery,
-            quantity: 1, // Pass quantity as a number
+            quantity: 1, 
             chefname: item.chefname,
             chefimage: item.chefimage,
             location: item.location,
@@ -100,10 +97,8 @@ function ItemView() {
             chefId: item.chefId,
         };
     
-        // Log the cart item
         console.log('Cart Item:', cartItem);
     
-        // Call the API
         try {
             const res = await addtocartApi(cartItem, header);
             console.log(res);

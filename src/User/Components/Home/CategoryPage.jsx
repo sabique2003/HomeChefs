@@ -5,7 +5,7 @@ import { allItemsApi } from '../../../Services/allApis';
 import base_url from '../../../Services/base_url';
 
 function CategoryPage() {
-    const { category } = useParams(); // Extract category name from the route parameter
+    const { category } = useParams(); 
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
 

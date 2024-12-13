@@ -1,33 +1,32 @@
-/* UserAuth.css */
 
 .leaflet-control-geocoder-form input {
-    background-color: white; /* Light background for readability */
-    color: #333; /* Dark text for contrast */
-    border-radius: 4px; /* Rounded corners */
-    padding: 5px; /* Adjust padding */
-    width: 200px; /* Set a fixed width */
-    font-size: 14px; /* Increase font size for better readability */
+    background-color: white; 
+    color: #333;
+    border-radius: 4px; 
+    padding: 5px; 
+    width: 200px; 
+    font-size: 14px; 
 }
 
 .leaflet-control-geocoder-alternatives {
-    background-color: white; /* Set background for suggestions */
-    color: #333; /* Text color */
-    border: 1px solid #fcf5f5; /* Border for visibility */
-    max-height: 150px; /* Limit height to prevent overflow */
-    overflow-y: auto; /* Enable scrolling for long lists */
-    border-radius: 4px; /* Rounded corners */
+    background-color: white;
+        color: #333; 
+    border: 1px solid #fcf5f5; 
+    max-height: 150px; 
+    overflow-y: auto; 
+    border-radius: 4px; 
     margin: 5px;
-    padding: 5px; /* Adjust padding */
-    font-size: 10px; /* Make text readable */
+    padding: 5px; 
+    font-size: 10px; 
     height: 40%;
-    z-index: 1000; /* Ensure it appears on top */
+    z-index: 1000; 
 }
 
 
 .leaflet-control-geocoder-alternatives a {
-    color: #4A628A; /* Change link color to fit project theme */
+    color: #4A628A; 
 }
 
 .leaflet-control-geocoder-alternatives a:hover {
-    background-color: #DFF2EB; /* Background on hover */
+    background-color: #DFF2EB; 
 }

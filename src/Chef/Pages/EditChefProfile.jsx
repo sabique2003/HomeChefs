@@ -117,11 +117,11 @@ function EditChefProfile() {
     } else if (sessionStorage.getItem("profile")) {
       return `${base_url}/uploads/${sessionStorage.getItem("profile")}`; // For existing profile in session storage
     } else {
-      return "https://via.placeholder.com/150"; // Dummy image when no profile is available
+      return "https://via.placeholder.com/150"; 
     }
   };
   
-    // Existing URL from sessionStorage
+    
 
   return (
     <div

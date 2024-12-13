@@ -1,6 +1,6 @@
 .hero {
   height: 100vh;
-  background-image: url('../../../Images/landing-bg.jpg'); /* Path to your local image */
+  background-image: url('../../../Images/landing-bg.jpg'); 
   background-size: cover;
   background-position: top;
 }
@@ -11,7 +11,6 @@
   font-size: 1rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .hero .btn-custom {
     padding: 0.6rem 1rem;
@@ -23,10 +22,10 @@
   .hero .btn-custom {
     padding: 0.5rem 0.8rem;
     font-size: 0.85rem;
-    width: 100%; /* Make buttons full-width on very small screens */
+    width: 100%; 
   }
   .hero .btn-chef {
     width: 100%;
-    margin-top: 10px; /* Add space between buttons */
+    margin-top: 10px; 
   }
 }

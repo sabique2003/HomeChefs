@@ -16,7 +16,6 @@ function EditItems({ item }) {
     const [preview, setPreview] = useState("");
     const { getResponse, setGetResponse } = useContext(getItemResponseContext);
 
-    // Update the preview image when the `data.image` changes
     useEffect(() => {
         if (data.image && data.image.type) {
             setPreview(URL.createObjectURL(data.image));

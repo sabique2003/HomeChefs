@@ -5,7 +5,6 @@ const Footer = () => (
   <footer className="footer text-light" style={{backgroundColor:'#4A628A'}}>
     <div className="container py-5">
       <div className="row">
-        {/* About Section */}
         <div className="col-md-4">
           <h5 className="mb-4">About HomeChefs</h5>
           <p>
@@ -14,7 +13,6 @@ const Footer = () => (
           </p>
         </div>
 
-        {/* Quick Links */}
         <div className="col-md-4">
           <h5 className="mb-4">Quick Links</h5>
           <ul className="list-unstyled">
@@ -25,7 +23,6 @@ const Footer = () => (
           </ul>
         </div>
 
-        {/* Social Media and Contact */}
         <div className="col-md-4">
           <h5 className="mb-4">Connect with Us</h5>
           <p>Stay connected on social media:</p>
@@ -39,7 +36,6 @@ const Footer = () => (
         </div>
       </div>
 
-      {/* Copyright */}
       <div className="text-center mt-4">
         <p>&copy; {new Date().getFullYear()} HomeChefs. All Rights Reserved.</p>
       </div>

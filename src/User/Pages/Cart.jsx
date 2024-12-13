@@ -4,6 +4,7 @@ import { getCartApi, deleteCartApi, editCartApi } from '../../Services/allApis';
 import base_url from '../../Services/base_url';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import './Cart.css';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,7 +13,7 @@ const Cart = () => {
     getCart();
   }, []);
 
-  const nav=useNavigate()
+  const nav = useNavigate();
 
   const getCart = async () => {
     const headers = {
@@ -96,7 +97,7 @@ const Cart = () => {
   return (
     <div className="container my-4">
       <h2>Shopping Cart</h2>
-      <Table striped bordered hover>
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>Image</th>
@@ -112,16 +113,16 @@ const Cart = () => {
             const itemImage = `${base_url}/uploads/${item.itemimage}`;
             return (
               <tr key={item._id}>
-                <td>
+                <td className="cart-image">
                   <img
                     src={itemImage}
                     alt={item.itemname}
-                    style={{ width: '60px', height: '60px' }}
+                    className="img-fluid"
                   />
                 </td>
-                <td>{item.itemname}</td>
-                <td>₹{parseFloat(item.price).toFixed(2)}</td>
-                <td>
+                <td className="cart-title">{item.itemname}</td>
+                <td className="cart-price">₹{parseFloat(item.price).toFixed(2)}</td>
+                <td className="cart-quantity">
                   <Form.Control
                     type="number"
                     min="1"
@@ -129,22 +130,14 @@ const Cart = () => {
                     onChange={(e) =>
                       handleQuantityChange(item._id, parseInt(e.target.value, 10))
                     }
-                    style={{ width: '60px' }}
+                    className="quantity-input"
                   />
                 </td>
-                <td>₹{(parseFloat(item.price) * item.quantity).toFixed(2)}</td>
-                <td>
-                  <div className="d-flex justify-content-center align-items-center">
-                    <button
-                      className="btn"
-                      onClick={() => handleDelete(item._id)}
-                    >
-                      <i
-                        className="fa-solid fa-trash"
-                        style={{ color: '#a41313', cursor: 'pointer' }}
-                      />
-                    </button>
-                  </div>
+                <td className="cart-subtotal">₹{(parseFloat(item.price) * item.quantity).toFixed(2)}</td>
+                <td className="cart-actions">
+                  <Button variant="danger" onClick={() => handleDelete(item._id)} className="btn-delete">
+                    <i className="fa-solid fa-trash"></i>
+                  </Button>
                 </td>
               </tr>
             );
