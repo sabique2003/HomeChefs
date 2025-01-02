@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import { allItemsApi } from '../../../Services/allApis';
 import base_url from '../../../Services/base_url';
+
 
 function CategoryPage() {
     const { category } = useParams(); 
@@ -40,6 +41,7 @@ function CategoryPage() {
             <Row>
                 {items.map((item, idx) => (
                     <Col key={idx} xs={12} sm={6} md={4} lg={2}>
+                        <Link to={`/item/${item._id}`} style={{ textDecoration: 'none' }}>
                         <Card className="mb-4" style={{ cursor: 'pointer', backgroundColor: '#B9E5E8', height: '250px', width: '100%' }}>
                             <Card.Img
                                 variant="top"
@@ -67,6 +69,7 @@ function CategoryPage() {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
+                            </Link>
                     </Col>
                 ))}
             </Row>
