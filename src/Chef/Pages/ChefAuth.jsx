@@ -1,90 +1,82 @@
-import React,{useContext} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Row, Col, Modal, Button } from 'react-bootstrap';
-import { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-control-geocoder';
 import toast from 'react-hot-toast';
-import { chefRegisterApi,chefLoginApi } from '../../Services/allApis';
+import { chefRegisterApi, chefLoginApi } from '../../Services/allApis';
 import { useNavigate } from 'react-router-dom';
 import { tokenContext } from '../../Contextapi/TokenContext';
 
 function ChefAuth() {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(false); // false = Login, true = Registration
   const [location, setLocation] = useState({ latitude: '', longitude: '' });
   const [locationError, setLocationError] = useState(null);
   const [showMapModal, setShowMapModal] = useState(false);
-  const {tokenStatus,setTokenStatus}=useContext(tokenContext)
+  const { tokenStatus, setTokenStatus } = useContext(tokenContext);
+  const nav = useNavigate();
 
-
-  const nav=useNavigate()
   const [chef, setChef] = useState({
-    email: "", password: "", whatsapp: "", chefname: "", location: ""
+    email: '',
+    password: '',
+    whatsapp: '',
+    chefname: '',
+    location: ''
   });
 
-  const changeState = () =>{ setState(!state) 
-    setChef({    
-      email: "", password: "", whatsapp: "", chefname: "", location: ""
-    })
+  useEffect(() => {
+    if (!state) {
+      // Reset chef object when switching between login and registration views
+      setChef({ email: '', password: '', whatsapp: '', chefname: '', location: '' });
+    }
+  }, [state]);
+
+  const changeState = () => {
+    setState(!state);
+    setChef({ email: '', password: '', whatsapp: '', chefname: '', location: '' });
   };
 
-
-  const handleRegister = async() => {
-    console.log(chef);
-    const {email,password,whatsapp,chefname,location}=chef
-    if(!email || !password || !whatsapp || !chefname || !location){
-        toast.error("Enter Valid Input !!")
-    }
-    else{
-        const res=await chefRegisterApi(chef)
-        console.log(res);
-        if(res.status==200){
-            toast.success("Registered Successfully")
-            setChef({
-                email: "", password: "", whatsapp: "", chefname: "", location: ""
-            })
-            changeState()
-        }
-        else if(res.status==400){
-            toast.error("Registration Failed !!")
-     
-        }
-        else{
-            toast.error(res.response.data)
-        }
-    }
-};
-
-const handleLogin=async()=>{
-  const {email,password}=chef
-  if(!email || !password){
-      toast.error("Enter Valid Inputs")
-  }
-  else{
-      const res=await chefLoginApi(chef)
-      console.log(res);
-      if(res.status==200){
-          toast.success("Login Successfull")
-          setChef({
-              email: "", password: "", whatsapp: "", chefname: "", location: "",profile:"",
-          })
-          sessionStorage.setItem("token",res.data.token)
-          sessionStorage.setItem("name",res.data.chefname)
-          sessionStorage.setItem("email",res.data.email)
-          sessionStorage.setItem("whatsapp",res.data.whatsapp)
-          sessionStorage.setItem("location",res.data.location)
-          sessionStorage.setItem("profile",res.data.profile)
-          setTokenStatus(true)
-          nav('/chefhome')
+  const handleRegister = async () => {
+    const { email, password, whatsapp, chefname, location } = chef;
+    if (!email || !password || !whatsapp || !chefname || !location) {
+      toast.error('Enter Valid Input !!');
+    } else {
+      const res = await chefRegisterApi(chef);
+      if (res.status === 200) {
+        toast.success('Registered Successfully');
+        changeState();
+      } else if (res.status === 400) {
+        toast.error('Registration Failed !!');
+      } else {
+        toast.error(res.response?.data || 'An error occurred');
       }
-      else{
-          toast.error(res.response.data)
+    }
+  };
+
+  const handleLogin = async () => {
+    const { email, password } = chef;
+    if (!email || !password) {
+      toast.error('Enter Valid Inputs');
+    } else {
+      const res = await chefLoginApi(chef);
+      if (res.status === 200) {
+        toast.success('Login Successful');
+        sessionStorage.setItem('token', res.data.token);
+        sessionStorage.setItem('name', res.data.chefname);
+        sessionStorage.setItem('email', res.data.email);
+        sessionStorage.setItem('whatsapp', res.data.whatsapp);
+        sessionStorage.setItem('location', res.data.location);
+        sessionStorage.setItem('profile', res.data.profile);
+        setTokenStatus(true);
+        nav('/chefhome');
+      } else {
+        toast.error(res.response?.data || 'An error occurred');
       }
-      
-  }
-}
+    }
+  };
+
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -132,7 +124,7 @@ const handleLogin=async()=>{
   function MapWithSearchControl() {
     const map = useMapEvents({});
 
-    React.useEffect(() => {
+    useEffect(() => {
       const geocoder = L.Control.Geocoder.nominatim();
       const searchControl = L.Control.geocoder({
         query: '',
@@ -163,31 +155,51 @@ const handleLogin=async()=>{
 
   return (
     <>
-      <div className="w-100 d-flex align-items-center justify-content-center" style={{ height: "150vh", backgroundColor: "#7AB2D3" }}>
+      <div className="w-100 d-flex align-items-center justify-content-center" style={{ height: '150vh', backgroundColor: '#7AB2D3' }}>
         <div className="border shadow p-5 w-75 bg-light">
           <Row>
-            <Col md={6} sm={12} className='d-flex align-items-center'>
+            <Col md={6} sm={12} className="d-flex align-items-center">
               <img
                 src="https://img.freepik.com/free-vector/coloured-chefdesign_1152-72.jpg"
                 className="img-fluid"
-                alt=""
+                alt="Chef Illustration"
               />
             </Col>
-            <Col md={6} sm={12} className='d-flex flex-column justify-content-center'>
+            <Col md={6} sm={12} className="d-flex flex-column justify-content-center">
               {state ? <h3 className="mb-4">Chef Registration</h3> : <h3 className="mb-4">Chef Login</h3>}
               <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
-                <Form.Control type="email" placeholder="name@example.com" onChange={(e) => setChef({ ...chef, email: e.target.value })} />
+                <Form.Control
+                  type="email"
+                  placeholder="name@example.com"
+                  value={chef.email}
+                  onChange={(e) => setChef({ ...chef, email: e.target.value })}
+                />
               </FloatingLabel>
               <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
-                <Form.Control type="password" placeholder="Password" onChange={(e) => setChef({ ...chef, password: e.target.value })} />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={chef.password}
+                  onChange={(e) => setChef({ ...chef, password: e.target.value })}
+                />
               </FloatingLabel>
               {state && (
                 <>
                   <FloatingLabel controlId="floatingInput" label="WhatsApp Number" className="mb-3">
-                    <Form.Control type="number" placeholder="1234567890" onChange={(e) => setChef({ ...chef, whatsapp: e.target.value })} />
+                    <Form.Control
+                      type="number"
+                      placeholder="1234567890"
+                      value={chef.whatsapp}
+                      onChange={(e) => setChef({ ...chef, whatsapp: e.target.value })}
+                    />
                   </FloatingLabel>
                   <FloatingLabel controlId="floatingInput" label="Name" className="mb-3">
-                    <Form.Control type="name" placeholder="Your Name" onChange={(e) => setChef({ ...chef, chefname: e.target.value })} />
+                    <Form.Control
+                      type="text"
+                      placeholder="Your Name"
+                      value={chef.chefname}
+                      onChange={(e) => setChef({ ...chef, chefname: e.target.value })}
+                    />
                   </FloatingLabel>
                   <FloatingLabel controlId="floatingInput" label="Kitchen Location" className="mb-3">
                     <Form.Control
