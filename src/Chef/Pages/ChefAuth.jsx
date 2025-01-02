@@ -27,15 +27,16 @@ function ChefAuth() {
   });
 
   useEffect(() => {
-    if (!state) {
-      // Reset chef object when switching between login and registration views
-      setChef({ email: '', password: '', whatsapp: '', chefname: '', location: '' });
-    }
+    setChef({ email: '', password: '', whatsapp: '', chefname: '', location: '' });
   }, [state]);
+
+  const clearInputs = () => {
+    setChef({ email: '', password: '', whatsapp: '', chefname: '', location: '' });
+  };
 
   const changeState = () => {
     setState(!state);
-    setChef({ email: '', password: '', whatsapp: '', chefname: '', location: '' });
+    clearInputs();
   };
 
   const handleRegister = async () => {
@@ -46,6 +47,7 @@ function ChefAuth() {
       const res = await chefRegisterApi(chef);
       if (res.status === 200) {
         toast.success('Registered Successfully');
+        clearInputs(); // Clear inputs after registration
         changeState();
       } else if (res.status === 400) {
         toast.error('Registration Failed !!');
