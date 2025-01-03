@@ -116,7 +116,7 @@ function UserAccount() {
         if (res.status === 200) {
           toast.success("Account updated");
           sessionStorage.clear();
-          navigate("/userauth");
+          navigate("/");
         } else {
           throw new Error("Account updation failed!");
         }
